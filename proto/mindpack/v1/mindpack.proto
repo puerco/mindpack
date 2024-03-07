@@ -1,0 +1,30 @@
+// SPDX-License-Identifier: Apache-2.0
+// SPDX-FileCopyrightText: Copyright 2024 Stacklok Inc
+
+syntax = "proto3";
+package mindpack.v1;
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/puerco/mindpack/pkg/mindpack";
+
+message Manifest {
+    Metadata metadata = 1;
+    Files  files = 2;    
+}
+
+message Metadata {
+    string name = 1;
+    string namespace = 2;
+    string version = 3;
+    google.protobuf.Timestamp date = 4;
+}
+
+message File {
+    string name = 1;
+    map<string, string> hashes = 2;
+}
+
+message Files {
+    repeated File profiles = 1;
+    repeated File ruleTypes = 2;
+}
